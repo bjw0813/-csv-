@@ -1,0 +1,22 @@
+dataframes = {}
+
+# 데이터가 있는 디렉토리 경로
+directory = '/content/drive/MyDrive/data'
+
+# 디렉토리 내의 모든 파일을 확인하고 CSV 파일인 경우 데이터프레임으로 불러오기
+for filename in os.listdir(directory):
+    if filename.endswith(".csv"):
+        # CSV 파일을 데이터프레임으로 읽어와서 변수에 저장
+        file_path = os.path.join(directory, filename)
+        # 파일명을 변수명으로 사용 (확장자 제외)
+        variable_name = os.path.splitext(filename)[0]
+        # 데이터프레임 생성 및 저장
+        dataframes[variable_name] = pd.read_csv(file_path)
+
+# 각각의 데이터프레임을 사용하려면 dataframes 딕셔너리를 활용합니다.
+# 예를 들어, 첫 번째 데이터프레임을 사용하려면 dataframes['첫 번째 파일명'] 형식으로 접근합니다.
+
+dataframes_keys = list(dataframes.keys())
+
+#데이터프레임 접근 시 이 형식으로 접근
+dataframes[dataframes_keys[1]]
